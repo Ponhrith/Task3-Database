@@ -1,34 +1,23 @@
+import helper.Connection
 import model.People
-import java.sql.DriverManager
+import screen.UserScreen
+import java.io.File
 
 
-fun main(){
-    val jdbcUrl = "jdbc:mysql://localhost:3306/task3"
+class Main {
+    companion object{
+        @JvmStatic
+        fun main(args : Array<String>){
+/*
+            File("/Documents/Task2-ID/ID/src/main/kotlin").walk()
 
-    val connection = DriverManager.getConnection(jdbcUrl, "root", "root")
-    val query = connection.prepareStatement("SELECT * FROM people")
-    val result = query.executeQuery()
-    val people = mutableListOf<People>()
+            val file = File("/Documents/Task2-ID/ID/ID.csv")*/
 
-    val stringBuilder = StringBuilder()
-    "Name,Age,Gender,Height,Address,Contact".split(",").forEach{item ->
-        stringBuilder.append(String.format("%20s", item))
+            val con = Connection.initializeConnectionToDB()
+            val people = People()
+            val userScreen = UserScreen()
+            userScreen.menu(con, people)
+            println("===> Application has shut down")
+        }
     }
-    println(stringBuilder)
-    while (result.next()) {
-        val name = result.getString("name")
-        val age = result.getInt("age")
-        val gender = result.getString("gender")
-        val height = result.getFloat("height")
-        val address = result.getString("address")
-        val contact = result.getString("contact")
-
-        people.add(People(name,age,gender,height,address,contact))
-
-    }
-    people.forEach{
-        println(it.print())
-    }
-
-
 }
