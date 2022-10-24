@@ -21,7 +21,4 @@ var contact: String = "",
         fun getAgeFromInput() : Int = getIntFromInput(People::age.name)
         fun getHeightFromInput(): Float = getFloatFromInput(People::height.name)
     }
-
-
-
 }

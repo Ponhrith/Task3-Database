@@ -8,11 +8,6 @@ class Main {
     companion object{
         @JvmStatic
         fun main(args : Array<String>){
-/*
-            File("/Documents/Task2-ID/ID/src/main/kotlin").walk()
-
-            val file = File("/Documents/Task2-ID/ID/ID.csv")*/
-
             val con = Connection.initializeConnectionToDB()
             val people = People()
             val userScreen = UserScreen()

@@ -9,9 +9,7 @@ import java.io.File
 
 class UserScreen {
     private val people = mutableListOf<People>()
-
-
-
+    private val tableName = "people"
     fun menu(connection: Connection, person: People){
         val option = Options()
         println("1. Click (1) to read user's info.")
@@ -157,21 +155,17 @@ class UserScreen {
 
     }
 
-
     private fun backToMenu(connection: Connection, person: People){
         print("Press 'q' to quit and press any key to go back to main menu: ")
         when (readLine() ?: "y"){
             "q"->{
                 return
             }
-
             else -> {
                 menu(connection, person)
             }
         }
     }
-
-    private val tableName = "people"
 
     private fun insertData(connection: Connection, person: People) {
         val sql = "INSERT INTO $tableName(name, age, gender, height, address, contact) VALUES('${person.name}', ${person.age}, '${person.gender}',${person.height}, '${person.address}', '${person.contact}' )"
